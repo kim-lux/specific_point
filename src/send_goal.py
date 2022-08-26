@@ -70,6 +70,7 @@ if __name__ == '__main__':
                 rospy.loginfo("I Don't Know")
         if result:
             rospy.loginfo("Goal execution done!")
+            continue
     except rospy.ROSInterruptException:
         rospy.loginfo("Navigation test finished.")
                                                               
