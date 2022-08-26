@@ -42,24 +42,27 @@ if __name__ == '__main__':
         ser = initConnection(portNo="/dev/ttyS0", baudRate=115200)
         rospy.init_node('movebase_client_py')
         while True:
-            #data=ser.readline()
-            ser.flushOutput()
+            ser.flushInput()
+            rospy.sleep(0.1)
             data=ser.read()
+            rospy.sleep(0.1)
+            if data == None:
+                continue
             print(data)
             if data[0] == '1':
                 position = {'x': 0.5, 'y' : 0.5}
                 quaternion = {'r1' : 0.000, 'r2' : 0.000, 'r3' : 0.000, 'r4' : 1.000}
-                rospy.loginfo("Go to (%s, %s) pose[0]", position['x'], position['y'])
+                rospy.loginfo("Go to (%s, %s) pose", position['x'], position['y'])
                 result = movebase_client(position, quaternion)
             elif data == '2':
                 position = {'x': 0.5, 'y' : 0.5}
                 quaternion = {'r1' : 0.000, 'r2' : 0.000, 'r3' : 0.000, 'r4' : 1.000}
-                rospy.loginfo("Go to (%s, %s) pose1", position['x'], position['y'])
+                rospy.loginfo("Go to (%s, %s) pose", position['x'], position['y'])
                 result = movebase_client(position, quaternion)
             elif data == '3':
                 position = {'x': 0.5, 'y' : 0.5}
                 quaternion = {'r1' : 0.000, 'r2' : 0.000, 'r3' : 0.000, 'r4' : 1.000}
-                rospy.loginfo("Go to (%s, %s) pos--e", position['x'], position['y'])
+                rospy.loginfo("Go to (%s, %s) pose", position['x'], position['y'])
                 result = movebase_client(position, quaternion)
             elif data == '4':
                 position = {'x': 0.5, 'y' : 0.5}
@@ -68,9 +71,12 @@ if __name__ == '__main__':
                 result = movebase_client(position, quaternion)
             else:
                 rospy.loginfo("I Don't Know")
-        if result:
-            rospy.loginfo("Goal execution done!")
-            continue
+                result = 0
+            if result:
+                rospy.loginfo("Goal execution done!")
+                continue
+            else:
+                rospy.loginfo("why here?")
     except rospy.ROSInterruptException:
         rospy.loginfo("Navigation test finished.")
-                                                              
+                                                                                                                                                                                          81,26         Bot
