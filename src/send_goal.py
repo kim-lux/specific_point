@@ -46,22 +46,22 @@ if __name__ == '__main__':
             ser.flushOutput()
             data=ser.read()
             print(data)
-            if data[0] == 1:
+            if data[0] == '1':
                 position = {'x': 0.5, 'y' : 0.5}
                 quaternion = {'r1' : 0.000, 'r2' : 0.000, 'r3' : 0.000, 'r4' : 1.000}
                 rospy.loginfo("Go to (%s, %s) pose[0]", position['x'], position['y'])
                 result = movebase_client(position, quaternion)
-            elif data == 1:
+            elif data == '2':
                 position = {'x': 0.5, 'y' : 0.5}
                 quaternion = {'r1' : 0.000, 'r2' : 0.000, 'r3' : 0.000, 'r4' : 1.000}
                 rospy.loginfo("Go to (%s, %s) pose1", position['x'], position['y'])
                 result = movebase_client(position, quaternion)
-            elif data == '1':
+            elif data == '3':
                 position = {'x': 0.5, 'y' : 0.5}
                 quaternion = {'r1' : 0.000, 'r2' : 0.000, 'r3' : 0.000, 'r4' : 1.000}
                 rospy.loginfo("Go to (%s, %s) pos--e", position['x'], position['y'])
                 result = movebase_client(position, quaternion)
-            elif data == 4:
+            elif data == '4':
                 position = {'x': 0.5, 'y' : 0.5}
                 quaternion = {'r1' : 0.000, 'r2' : 0.000, 'r3' : 0.000, 'r4' : 1.000}
                 rospy.loginfo("Go to (%s, %s) pose", position['x'], position['y'])
