@@ -6,3 +6,4 @@
 ## source ~/catkin_ws/devel/setup.bash
 ## sd카드에 pc 처럼 설치
 ## sudo apt install ros-melodic-serial
+## sudo chmod 766 /dev/ttyS0
